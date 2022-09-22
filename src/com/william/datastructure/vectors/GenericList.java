@@ -1,22 +1,22 @@
 package com.william.datastructure.vectors;
 
-public class Vector {
-    private String[] elements;
+public class GenericList<T> {
+    private T[] elements;
     private int realLength;
 
-    public Vector(int size) {
-        this.elements = new String[size];
+    public GenericList(int size) {
+        this.elements = (T[]) new Object[size];
         this.realLength = 0;
     }
 
-    public boolean add(String element) {
+    public boolean add(T element) {
         increaseVector();
         this.elements[this.realLength] = element;
         this.realLength++;
         return true;
     }
 
-    public boolean add(String element, int position) {
+    public boolean add(T element, int position) {
         increaseVector();
         if (!(isPositionValid(position))) {
             throw new IllegalArgumentException("Invalid Position");
@@ -42,7 +42,7 @@ public class Vector {
 
     private void increaseVector() {
         if (this.realLength == this.elements.length) {
-            String[] newVector = new String[this.elements.length * 2];
+            T[] newVector = (T[]) new Object[this.elements.length * 2];
             for (int i = 0; i < this.realLength; i++) {
                 newVector[i] = this.elements[i];
             }
@@ -54,13 +54,13 @@ public class Vector {
         return position >= 0 && position < this.realLength;
     }
     
-    public String search(int position) {
+    public T search(int position) {
         if (position >= 0 && position < this.realLength) {
             return this.elements[position];
-        } return "The element was not found!";
+        } return null;
     }
 
-    public int search(String element) {
+    public int search(T element) {
         for (int i = 0; i < this.realLength; i++) {
             if (this.elements[i].equals(element)) {
                 return i;

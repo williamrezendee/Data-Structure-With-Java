@@ -14,6 +14,5 @@ public class class_08 {
         vector.add("element 6", 0);
 
         System.out.println("Vector real Length: "+vector.realLength());
-
     }
 }
